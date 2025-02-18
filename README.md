@@ -13,7 +13,7 @@ A CLI typing trainer that locks your terminal until you achieve your typing goal
 
 ```bash
 git clone https://github.com/YOUR-USERNAME/terminal-typing-jail.git
-cd terminal-typing-jail
+cd terminal-jail
 pip install -r requirements.txt
 ```
 
