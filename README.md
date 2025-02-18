@@ -1,25 +1,27 @@
 # Terminal Jail ⌨️🔒
 
-A CLI typing trainer that locks your terminal until you achieve your typing goals!
+A CLI typing trainer that locks your terminal until you achieve your typing goals! Practice typing with Wikipedia articles, custom texts, or classic pangrams while tracking your speed and accuracy.
 
 ## Features
 
-- **Terminal Lock** 🔒 - Mandatory practice session
-- **Custom Texts** 📚 - PDF/EPUB/TXT support
-- **Live Stats** 📊 - Real-time WPM & accuracy
-- **Smart Fallback** 🌐 - Wikipedia articles + classic pangrams
+- **Terminal Lock** 🔒 - Locks your terminal until you reach your WPM and accuracy goals
+- **Custom Texts** 📚 - Import practice text from PDF, EPUB, or TXT files
+- **Live Stats** 📊 - Real-time WPM tracking and accuracy feedback with color-coded errors
+- **Smart Fallback** 🌐 - Automatically fetches Wikipedia articles, falls back to pangrams if needed
+- **Progress Tracking** 📈 - Visual cursor and progress indicators
+- **Daily Practice** ⏰ - Optional shell integration for daily typing exercises
 
 ## Install
 
 ```bash
 git clone https://github.com/YOUR-USERNAME/terminal-typing-jail.git
-cd terminal-jail
+cd terminal-typing-jail
 pip install -r requirements.txt
 ```
 
 ## Usage
 
-### Basic
+### Basic Run
 
 ```bash
 ./terminal_jail.py
@@ -44,55 +46,40 @@ pip install -r requirements.txt
 | ESC | Emergency exit |
 | ← Backspace | Delete character |
 
-## Config
+## Success Criteria
 
-Add to .bashrc/.zshrc for daily practice:
+- Meet or exceed your WPM goal (default: 40 WPM)
+- Maintain 95% or higher accuracy
+- Terminal remains locked until both criteria are met
+
+## Daily Practice Setup
+
+Add to your `.bashrc` or `.zshrc` for automated daily practice:
 
 ```bash
-# 1. Terminal Session Check
 if [ -t 0 ]; then
-# Only proceed if we're in an interactive terminal session (not a script/pipe)
-# [ -t 0 ] checks if file descriptor 0 (stdin) is connected to a terminal
-
-    # 2. File Initialization
     [ ! -f ~/.typing_jail_last ] && echo "0" > ~/.typing_jail_last
-    # If timestamp file doesn't exist, create it with "0" (Unix epoch timestamp)
-    # This ensures first-time users get prompted immediately
-
-    # 3. Timestamp Retrieval
     LAST_RUN=$(date -r ~/.typing_jail_last +%s 2>/dev/null || echo 0)
-    # Get last run time from file's modification timestamp:
-    # - date -r: shows file's last modification time
-    # - +%s: format as Unix timestamp (seconds since 1970-01-01)
-    # - 2>/dev/null: suppress error messages
-    # - || echo 0: fallback to 0 if file is missing/corrupted
-
-    # 4. Current Time
     NOW=$(date +%s)
-    # Get current Unix timestamp
-
-    # 5. Daily Check
     if [ $((NOW - LAST_RUN)) -ge 86400 ]; then
-    # Check if 24 hours (86,400 seconds) have passed since last completion
-    
-        # 6. Run Typing Test
         ~/path/to/terminal_jail.py && {
-        # Run the typing test program, and only proceed if successful
-            
-            # 7. Update Timestamp
             date +%s > ~/.typing_jail_last
-            # Write current timestamp to file after successful completion
-            
-            # 8. Clean Screen
             clear
-            # Clear terminal after successful test
         }
     fi
 fi
 ```
 
+This setup:
+- Checks if 24 hours have passed since last successful practice
+- Only runs in interactive terminal sessions
+- Updates completion timestamp after meeting goals
+- Clears screen after successful completion
+
 ## Requirements
 
+- python 3.x
+- curses (included in Python standard library)
 - wikipedia
 - PyPDF2
 - epub2txt
