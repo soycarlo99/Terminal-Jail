@@ -2,14 +2,16 @@
 
 A CLI typing trainer that locks your terminal until you achieve your typing goals! Practice typing with Wikipedia articles, custom texts, or classic pangrams while tracking your speed and accuracy.
 
+![Terminal Jail Screenshot](Screenshot%202026-02-28%20at%2001.37.27.png)
+
 ## Features
 
-- **Terminal Lock** 🔒 - Locks your terminal until you reach your WPM and accuracy goals
-- **Custom Texts** 📚 - Import practice text from PDF, EPUB, or TXT files
-- **Live Stats** 📊 - Real-time WPM tracking and accuracy feedback with color-coded errors
-- **Smart Fallback** 🌐 - Automatically fetches Wikipedia articles, falls back to pangrams if needed
-- **Progress Tracking** 📈 - Visual cursor and progress indicators
-- **Daily Practice** ⏰ - Optional shell integration for daily typing exercises
+- **Terminal Lock** - Locks your terminal until you reach your WPM and accuracy goals
+- **Custom Texts** - Import practice text from PDF, EPUB, or TXT files
+- **Live Stats** - Real-time WPM tracking and accuracy feedback with color-coded errors
+- **Smart Fallback** - Automatically fetches Wikipedia articles, falls back to pangrams if needed
+- **Progress Tracking** - Visual cursor and progress indicators
+- **Daily Practice** - Optional shell integration for daily typing exercises
 
 ## Install
 
